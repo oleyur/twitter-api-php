@@ -76,18 +76,34 @@ class TwitterAPIExchange
             throw new Exception('You need to install cURL, see: http://curl.haxx.se/docs/install.html');
         }
         
-        if (!isset($settings['oauth_access_token'])
-            || !isset($settings['oauth_access_token_secret'])
-            || !isset($settings['consumer_key'])
+        if (!isset($settings['consumer_key'])
             || !isset($settings['consumer_secret']))
         {
             throw new Exception('Make sure you are passing in the correct parameters');
         }
 
-        $this->oauth_access_token = $settings['oauth_access_token'];
-        $this->oauth_access_token_secret = $settings['oauth_access_token_secret'];
         $this->consumer_key = $settings['consumer_key'];
         $this->consumer_secret = $settings['consumer_secret'];
+    }
+
+    /**
+     * Set tokens
+     *
+     * @param array $tokens
+     * @return bool
+     * @throws Exception
+     */
+    public function init(array $tokens){
+        if (!isset($tokens['oauth_access_token'])
+            || !isset($tokens['oauth_access_token_secret']))
+        {
+            throw new Exception('Make sure you are passing in the correct parameters');
+        }
+
+        $this->oauth_access_token = $tokens['oauth_access_token'];
+        $this->oauth_access_token_secret = $tokens['oauth_access_token_secret'];
+
+        return true;
     }
 
     /**
