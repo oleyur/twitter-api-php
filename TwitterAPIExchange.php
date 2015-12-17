@@ -106,6 +106,16 @@ class TwitterAPIExchange
     }
 
     /**
+     * @return array
+     */
+    public function getTokens(){
+        return [
+            'oauth_access_token'=>$this->oauth_access_token,
+            'oauth_access_token_secret'=>$this->oauth_access_token_secret
+        ];
+    }
+
+    /**
      * Check for existing of tokens
      * @return bool
      */
