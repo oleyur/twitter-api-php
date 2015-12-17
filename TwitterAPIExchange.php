@@ -100,7 +100,7 @@ class TwitterAPIExchange
         }
 
         $this->oauth_access_token = $tokens['oauth_access_token'];
-        $this->oauth_access_token_secret = $tokens['oauth_access_token_secret'];
+        $this->oauth_access_token = $tokens['oauth_access_token_secret'];
 
         return true;
     }
@@ -110,7 +110,7 @@ class TwitterAPIExchange
      * @return bool
      */
     public function existTokens(){
-        if (!isset($tokens['oauth_access_token']) || !isset($tokens['oauth_access_token_secret'])){
+        if (empty($this->oauth_access_token) || empty($this->oauth_access_token)){
             return false;
         }
 
