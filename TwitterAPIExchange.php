@@ -94,14 +94,25 @@ class TwitterAPIExchange
      * @throws Exception
      */
     public function init(array $tokens){
-        if (!isset($tokens['oauth_access_token'])
-            || !isset($tokens['oauth_access_token_secret']))
+        if (!$this->existTokens())
         {
             throw new Exception('Make sure you are passing in the correct parameters');
         }
 
         $this->oauth_access_token = $tokens['oauth_access_token'];
         $this->oauth_access_token_secret = $tokens['oauth_access_token_secret'];
+
+        return true;
+    }
+
+    /**
+     * Check for existing of tokens
+     * @return bool
+     */
+    public function existTokens(){
+        if (!isset($tokens['oauth_access_token']) || !isset($tokens['oauth_access_token_secret'])){
+            return false;
+        }
 
         return true;
     }
