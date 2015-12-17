@@ -94,7 +94,7 @@ class TwitterAPIExchange
      * @throws Exception
      */
     public function init(array $tokens){
-        if (!$this->existTokens())
+        if (!isset($tokens['oauth_access_token']) || !isset($tokens['oauth_access_token_secret']))
         {
             throw new Exception('Make sure you are passing in the correct parameters');
         }
